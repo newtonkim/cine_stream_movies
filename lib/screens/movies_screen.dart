@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:cine_stream_movie/constants/my_app_icons.dart';
+import 'package:cine_stream_movie/models/movies_model.dart';
 import 'package:cine_stream_movie/screens/favorite_screen.dart';
+import 'package:cine_stream_movie/services/api_movie_service.dart';
 import 'package:cine_stream_movie/services/init_getit.dart';
 import 'package:cine_stream_movie/services/navigation_service.dart';
 import 'package:cine_stream_movie/widgets/movies/movies_widget.dart';
@@ -27,8 +31,9 @@ class MoviesScreen extends StatelessWidget {
               ),
           ),
           IconButton(
-            onPressed: () {
-              // Implement search functionality
+            onPressed: () async {
+             final List<MovieModel> movies = await getIt<ApiMovieService>().fetchMovies();
+             log("movies $movies");
             },
             icon: const Icon(
               MyAppIcons.darkMode,

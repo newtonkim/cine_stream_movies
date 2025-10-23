@@ -1,5 +1,4 @@
 class MovieModel {
-
   bool adult;
   String backdropPath;
   List<int> genreIds;
@@ -51,7 +50,7 @@ class MovieModel {
     );
   }
 
-   Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'adult': adult,
       'backdrop_path': backdropPath,
@@ -68,5 +67,25 @@ class MovieModel {
       'vote_average': voteAverage,
       'vote_count': voteCount,
     };
+  }
+
+  @override
+  String toString() {
+    return '''MovieModel(
+      adult: $adult,
+      backdropPath: $backdropPath,
+      genreIds: $genreIds,
+      id: $id,
+      originalLanguage: $originalLanguage,
+      originalTitle: $originalTitle,
+      overview: $overview,
+      popularity: $popularity,
+      posterPath: $posterPath,
+      releaseDate: $releaseDate,
+      title: $title,
+      video: $video,
+      voteAverage: $voteAverage,
+      voteCount: $voteCount,
+    )''';
   }
 }
