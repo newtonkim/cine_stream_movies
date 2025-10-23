@@ -3,9 +3,22 @@ import 'package:cine_stream_movie/constants/my_theme_data.dart';
 // import 'package:cine_stream_movie/screens/movie_details.dart';
 // import 'package:cine_stream_movie/screens/splash_screen.dart';
 import 'package:cine_stream_movie/screens/movies_screen.dart';
+import 'package:cine_stream_movie/services/init_getit.dart';
+import 'package:cine_stream_movie/services/navigation_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() {
+  setUpLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp, 
+      DeviceOrientation.portraitDown
+    ]).then((_) async {
+      await dotenv.load(fileName: "assets/.env");
+     });
+  
   runApp(const MyApp());
 }
 
@@ -16,6 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: getIt<NavigationService>().navigatorKey,
       debugShowCheckedModeBanner: false,
       title: 'Cine Stream Movie',
       theme: MyThemeData.lightTheme,

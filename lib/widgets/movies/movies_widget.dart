@@ -1,5 +1,8 @@
 import 'package:cine_stream_movie/constants/my_app_constants.dart';
 import 'package:cine_stream_movie/constants/my_app_icons.dart';
+import 'package:cine_stream_movie/screens/movie_details.dart';
+import 'package:cine_stream_movie/services/init_getit.dart';
+import 'package:cine_stream_movie/services/navigation_service.dart';
 import 'package:cine_stream_movie/widgets/movies/cached_image.dart';
 import 'package:cine_stream_movie/widgets/movies/favorite_btn.dart';
 import 'package:cine_stream_movie/widgets/movies/genres_list_widget.dart';
@@ -18,7 +21,7 @@ class MoviesWidget extends StatelessWidget {
          child: InkWell(
           borderRadius: BorderRadius.circular(12),
           onTap: () {
-            // Handle movie item tap
+               getIt<NavigationService>().navigate(MovieDetailsScreen());
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),

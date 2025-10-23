@@ -1,5 +1,7 @@
 import 'package:cine_stream_movie/constants/my_app_icons.dart';
 import 'package:cine_stream_movie/screens/favorite_screen.dart';
+import 'package:cine_stream_movie/services/init_getit.dart';
+import 'package:cine_stream_movie/services/navigation_service.dart';
 import 'package:cine_stream_movie/widgets/movies/movies_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -17,11 +19,7 @@ class MoviesScreen extends StatelessWidget {
         actions:[
           IconButton(
             onPressed: () {
-              Navigator.push(
-                context, MaterialPageRoute(
-                  builder: (context) => const FavoriteScreen(),
-                  ),
-                );
+             getIt<NavigationService>().navigate(FavoriteScreen());
             },
             icon: const Icon(
               MyAppIcons.favoriteRounded,
