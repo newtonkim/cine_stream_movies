@@ -5,8 +5,10 @@ import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;
 void setUpLocator() {
+
   // Register NavigationService as a singleton
   getIt.registerLazySingleton<NavigationService>(() => NavigationService());
   getIt.registerLazySingleton<ApiMovieService>(() => ApiMovieService());
   getIt.registerLazySingleton<MoviesRepository>(() => MoviesRepository(getIt<ApiMovieService>()));
+ 
 }
