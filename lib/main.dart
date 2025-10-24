@@ -1,3 +1,4 @@
+// import 'package:cine_stream_movie/constants/api_constants.dart';
 import 'package:cine_stream_movie/constants/my_theme_data.dart';
 // import 'package:cine_stream_movie/screens/favorite_screen.dart';
 // import 'package:cine_stream_movie/screens/movie_details.dart';
@@ -9,16 +10,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
-  setUpLocator();
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp, 
+    await dotenv.load(fileName: "assets/.env");
+
+  setUpLocator();
+  await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown
-    ]).then((_) async {
-      await dotenv.load(fileName: "assets/.env");
-     });
-  
+    ]);
+
   runApp(const MyApp());
 }
 

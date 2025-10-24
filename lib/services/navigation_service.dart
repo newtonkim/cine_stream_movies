@@ -19,4 +19,16 @@ class NavigationService {
       builder: (context) => widget,
     );
   }
+
+  showSnackBar(String message) {
+    final context = navigatorKey.currentContext!;
+    ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+    final snackbarwidget = SnackBar(
+      content: Text(
+        message,style:const TextStyle(
+          color: Colors.white,)
+        ),
+      );
+    ScaffoldMessenger.of(context).showSnackBar(snackbarwidget);
+  }
 }
