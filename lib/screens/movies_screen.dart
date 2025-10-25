@@ -1,4 +1,4 @@
-import 'dart:developer';
+// import 'dart:developer';
 
 import 'package:cine_stream_movie/constants/my_app_icons.dart';
 // import 'package:cine_stream_movie/models/genre_movies_model.dart';
@@ -102,7 +102,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
         itemCount: movies.length + (_isFetching ? 1 : 0),
         itemBuilder: (context, index) {
          if(index < movies.length){
-           return MoviesWidget();
+           return MoviesWidget(movieModel: movies[index],);
          } else{
           return SizedBox(height: 10, width: 10, child: const CircularProgressIndicator());
          }

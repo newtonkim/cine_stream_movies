@@ -1,5 +1,5 @@
 import 'package:cine_stream_movie/constants/my_app_icons.dart';
-import 'package:cine_stream_movie/widgets/movies/movies_widget.dart';
+// import 'package:cine_stream_movie/widgets/movies/movies_widget.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteScreen extends StatelessWidget {
@@ -30,7 +30,8 @@ class FavoriteScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
-        return MoviesWidget();
+        // return MoviesWidget();
+        return Text('my data test');
         },
       ),
     );

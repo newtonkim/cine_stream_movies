@@ -1,5 +1,6 @@
-import 'package:cine_stream_movie/constants/my_app_constants.dart';
+// import 'package:cine_stream_movie/constants/my_app_constants.dart';
 import 'package:cine_stream_movie/constants/my_app_icons.dart';
+import 'package:cine_stream_movie/models/movies_model.dart';
 import 'package:cine_stream_movie/screens/movie_details.dart';
 import 'package:cine_stream_movie/services/init_getit.dart';
 import 'package:cine_stream_movie/services/navigation_service.dart';
@@ -9,7 +10,9 @@ import 'package:cine_stream_movie/widgets/movies/genres_list_widget.dart';
 import 'package:flutter/material.dart';
 
 class MoviesWidget extends StatelessWidget {
-  const MoviesWidget({super.key});
+  const MoviesWidget({super.key, required this.movieModel});
+
+  final MovieModel movieModel;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class MoviesWidget extends StatelessWidget {
          child: InkWell(
           borderRadius: BorderRadius.circular(12),
           onTap: () {
-               getIt<NavigationService>().navigate(MovieDetailsScreen());
+               getIt<NavigationService>().navigate(MovieDetailsScreen(movieModel: movieModel,));
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -33,7 +36,7 @@ class MoviesWidget extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: CachedImageWidget(
-                      imgUrl: MyAppConstants.movieImage,
+                      imgUrl: "https://images.tmdb.org/t/p/w500/${movieModel.backdropPath}",
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -42,14 +45,14 @@ class MoviesWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Movie Title',
+                          movieModel.originalTitle,
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(height: 10),
-                        const Row(
+                         Row(
                           children: [
                             Icon(
                               MyAppIcons.star,
@@ -57,7 +60,7 @@ class MoviesWidget extends StatelessWidget {
                               size: 20,
                             ),
                             SizedBox(width: 5),
-                            Text("8/10"),
+                            Text("${movieModel.voteAverage}/10"),
                           ],
                         ),
                         const SizedBox(height: 10),
@@ -73,7 +76,7 @@ class MoviesWidget extends StatelessWidget {
                               color: Theme.of(context).colorScheme.primary,
                             ),
                             const SizedBox(width: 5),
-                            const Text("Relase Date",
+                            Text(movieModel.releaseDate,
                               style: TextStyle(
                              color:
                                 Colors.grey
@@ -95,5 +98,8 @@ class MoviesWidget extends StatelessWidget {
     );
   }
 }
+
+
+
 
 

@@ -1,15 +1,18 @@
-import 'package:cine_stream_movie/constants/my_app_constants.dart';
+// import 'package:cine_stream_movie/constants/my_app_constants.dart';
+import 'package:cine_stream_movie/models/movies_model.dart';
 import 'package:cine_stream_movie/widgets/movies/cached_image.dart';
 import 'package:cine_stream_movie/widgets/movies/favorite_btn.dart';
 import 'package:cine_stream_movie/widgets/movies/genres_list_widget.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
-  const MovieDetailsScreen({super.key});
+  const MovieDetailsScreen({super.key, required this.movieModel});
+
+  final MovieModel movieModel;
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('Building MovieDetailsScreen');
+   
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +29,9 @@ class MovieDetailsScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: size.height * 0.45,
-              child: CachedImageWidget(imgUrl: MyAppConstants.movieImage),
+              child: CachedImageWidget(
+                imgUrl: "https://images.tmdb.org/t/p/w500/${movieModel.backdropPath}",
+              ),
             ),
             SingleChildScrollView(
               child: Column(
@@ -45,8 +50,8 @@ class MovieDetailsScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const SizedBox(height: 25),
-                                const Text(
-                                  'Movie Title',
+                                 Text(
+                                  movieModel.originalTitle,
                                   maxLines: 2,
                                   style: TextStyle(
                                     fontSize: 28.0,
@@ -56,7 +61,7 @@ class MovieDetailsScreen extends StatelessWidget {
                                 const SizedBox(height: 8),
 
                                 const SizedBox(height: 5.0),
-                                const Row(
+                                Row(
                                   children: [
                                     Icon(
                                       Icons.star,
@@ -64,10 +69,10 @@ class MovieDetailsScreen extends StatelessWidget {
                                       size: 20.0,
                                     ),
                                     SizedBox(width: 5.0),
-                                    Text("9/10"),
+                                    Text("${movieModel.voteAverage}/10"),
                                     Spacer(),
                                     Text(
-                                      "Realease Date",
+                                      movieModel.releaseDate,
                                       style: TextStyle(color: Colors.grey),
                                     ),
                                   ],
@@ -76,7 +81,7 @@ class MovieDetailsScreen extends StatelessWidget {
                                 const GenresListWidget(),
                                 const SizedBox(height: 15),
                                 Text(
-                                  "overview" * 100, // Sample overview text
+                                  movieModel.overview, // Sample overview text
                                   textAlign: TextAlign.justify,
                                   style: const TextStyle(fontSize: 18.0),
                                 ),
