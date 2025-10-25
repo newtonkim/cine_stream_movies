@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class ApiMovieService {
   Future<List<MovieModel>> fetchMovies({int page = 1}) async {
     final url = Uri.parse(
-      "${ApiConstants.baseUrl}/movie/popular?language=en-US&page=1",
+      "${ApiConstants.baseUrl}/movie/popular?language=en-US&page=$page",
     );
     final response = await http.get(url, headers: ApiConstants.headers);
 
