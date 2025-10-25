@@ -104,7 +104,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
          if(index < movies.length){
            return MoviesWidget(movieModel: movies[index],);
          } else{
-          return SizedBox(height: 10, width: 10, child: const CircularProgressIndicator());
+          // return SizedBox(height: 10, width: 10, child: const CircularProgressIndicator());
          }
         },
       ),

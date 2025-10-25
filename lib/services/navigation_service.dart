@@ -31,4 +31,10 @@ class NavigationService {
       );
     ScaffoldMessenger.of(context).showSnackBar(snackbarwidget);
   }
+
+  navigateToReplacement(Widget widget) {
+    navigatorKey.currentState?.pushReplacement(
+      MaterialPageRoute(builder: (context) => widget),
+    );
+  }
 }
