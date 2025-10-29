@@ -1,17 +1,34 @@
-import 'package:cine_stream_movie/constants/my_app_constants.dart';
+// import 'package:cine_stream_movie/constants/my_app_constants.dart';
+import 'package:cine_stream_movie/models/genre_movies_model.dart';
+import 'package:cine_stream_movie/models/movies_model.dart';
+import 'package:cine_stream_movie/utils/genre_movies_utils.dart';
 import 'package:flutter/material.dart';
 
 class GenresListWidget extends StatelessWidget {
-  const GenresListWidget({super.key});
+  const GenresListWidget({super.key, required this.movieModel});
+
+  final MovieModel movieModel;
 
   @override
   Widget build(BuildContext context) {
+    List<GenreMoviesModel> moviesGenre = GenreMoviesUtils.movieGenreNames(
+      movieModel.genreIds,
+    );
     return Wrap(
-      children: List.generate(MyAppConstants.genres.length, (index)=>chipWidget(genreName:MyAppConstants.genres[index], context: context )),
+      children: List.generate(
+        moviesGenre.length,
+        (index) => chipWidget(
+          genreName: moviesGenre[index].name,
+          context: context,
+        ),
+      ),
     );
   }
 
-  Widget chipWidget({required String genreName, required BuildContext context}) {
+  Widget chipWidget({
+    required String genreName,
+    required BuildContext context,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
       child: Chip(
