@@ -5,7 +5,10 @@ import 'package:cine_stream_movie/utils/genre_movies_utils.dart';
 import 'package:flutter/material.dart';
 
 class GenresListWidget extends StatelessWidget {
-  const GenresListWidget({super.key, required this.movieModel});
+  const GenresListWidget({
+    super.key, 
+    required this.movieModel
+  });
 
   final MovieModel movieModel;
 
