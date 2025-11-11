@@ -9,13 +9,18 @@ import 'package:cine_stream_movie/screens/favorite_screen.dart';
 // import 'package:cine_stream_movie/services/api_movie_service.dart';
 import 'package:cine_stream_movie/services/init_getit.dart';
 import 'package:cine_stream_movie/services/navigation_service.dart';
+import 'package:cine_stream_movie/view_models/theme_provider.dart';
 import 'package:cine_stream_movie/widgets/movies/movies_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MoviesScreen extends StatelessWidget {
   const MoviesScreen({super.key});
 
   Widget build(BuildContext context) { 
+
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+   
     return Scaffold(
       appBar: AppBar(
         // centerTitle: true,
@@ -30,13 +35,7 @@ class MoviesScreen extends StatelessWidget {
           ),
           IconButton(
             onPressed: () async {
-              //  final List<MovieModel> movies = await getIt<ApiMovieService>().fetchMovies();
-              //  log("movies $movies");
-              //  final List<GenreMoviesModel> genres = await getIt<ApiMovieService>().fetchGenresMovies();
-              //  log("genres $genres");
-              // final List<GenreMoviesModel> genres =
-              //   await getIt<MoviesRepository>().fetchGenresMovies();
-              //   log("genres $genres");
+              themeProvider.toggleTheme();
             },
             icon: const Icon(
               MyAppIcons.darkMode

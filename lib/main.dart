@@ -7,9 +7,11 @@ import 'package:cine_stream_movie/screens/splash_screen.dart';
 // import 'package:cine_stream_movie/screens/movies_screen.dart';
 import 'package:cine_stream_movie/services/init_getit.dart';
 import 'package:cine_stream_movie/services/navigation_service.dart';
+import 'package:cine_stream_movie/view_models/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,15 +32,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: getIt<NavigationService>().navigatorKey,
-      debugShowCheckedModeBanner: false,
-      title: 'Cine Stream Movie',
-      theme: MyThemeData.darkTheme,
-      home: const MoviesScreen(),
-      // home: const FavoriteScreen(),
-      // home: const MovieDetailsScreen(),
-      // home: const SplashScreen(),
+    // final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ThemeProvider(),
+          ),
+      ],
+      child: Consumer(
+        builder: (context, ThemeProvider themeProvider, child) =>
+        MaterialApp(
+          navigatorKey: getIt<NavigationService>().navigatorKey,
+          debugShowCheckedModeBanner: false,
+          title: 'Cine Stream Movie',
+          theme: themeProvider.themeData,
+          home: const MoviesScreen(),
+          // home: const FavoriteScreen(),
+          // home: const MovieDetailsScreen(),
+          // home: const SplashScreen(),
+        ),
+      ),
     );
   }
 }
