@@ -5,50 +5,12 @@ import 'package:cine_stream_movie/services/navigation_service.dart';
 import 'package:cine_stream_movie/widgets/my_error_widget.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  bool isLoading = true;
-  String _errorMessage = '';
-  final _movieRepository = getIt<MoviesRepository>();
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchGenreData();
-  }
-
-  Future<void> _fetchGenreData() async {
-    setState(() {
-      isLoading = true;
-      _errorMessage = '';
-    });
-    try {
-      await _movieRepository.fetchGenresMovies();
-      await getIt<NavigationService>().navigateToReplacement(
-        const MoviesScreen(),
-      );
-    } catch (e) {
-      setState(() {
-        _errorMessage = 'Failed to load genre data: $e';
-      });
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
-    }
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {
     return Scaffold(
-      body: isLoading
+      body: true
           ? const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -61,9 +23,10 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             )
           : MyErrorWidget(
-              errorText: _errorMessage,
-              retryFunction: _fetchGenreData,
+              errorText: '_errorMessage',
+              retryFunction: (){},
             ),
     );
   }
+  
 }

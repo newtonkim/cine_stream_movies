@@ -5,7 +5,7 @@ import 'package:cine_stream_movie/services/init_getit.dart';
 class GenreMoviesUtils {
   static List<GenreMoviesModel> movieGenreNames(List<int> genreIds) {
     final movieRepository = getIt<MoviesRepository>();
-    final cachedGenres = movieRepository.cachedGenres;
+    final cachedGenres = []; // TODO: We need to get the correct cached genres from repository
     List<GenreMoviesModel> genreNames = [];
     for (var genreId in genreIds) {
       var genre = cachedGenres.firstWhere(

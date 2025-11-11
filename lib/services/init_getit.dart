@@ -11,4 +11,4 @@ void setUpLocator() {
   getIt.registerLazySingleton<ApiMovieService>(() => ApiMovieService());
   getIt.registerLazySingleton<MoviesRepository>(() => MoviesRepository(getIt<ApiMovieService>()));
  
-}
+} 
