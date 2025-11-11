@@ -8,11 +8,11 @@ class FavoriteBtnWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-       // TODO: Implement add to favourites.
+       // TODO: Implement favorite logic
       },
       icon: const Icon(
         MyAppIcons.favoriteRounded, 
-        // color: Colors.red,
+        color: null,
         size: 20,
       ),
     );
